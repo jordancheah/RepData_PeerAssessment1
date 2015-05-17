@@ -358,8 +358,8 @@ head(filled,30)
 
 
 ```r
-filledagg <- aggregate(filled$steps, by=list(filled$date2), FUN=sum, na.rm=TRUE)
-filledagg
+imputed <- aggregate(filled$steps, by=list(filled$date2), FUN=sum, na.rm=TRUE)
+imputed
 ```
 
 ```
@@ -428,15 +428,22 @@ filledagg
 ```
 
 ```r
-hist(filledagg[,2])
+colnames(imputed) <- c("Date", "TotalStepsPerDay")
+hist(imputed$TotalStepsPerDay)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-14-1.png) 
 
+```r
+hist(imputed$TotalStepsPerDay, breaks=c(1000*0:25))
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-14-2.png) 
+
 ### Calculate and report the mean and median total number of steps taken per day.
 
 ```r
-mean(filledagg[,2])
+mean(imputed$TotalStepsPerDay)
 ```
 
 ```
@@ -444,7 +451,7 @@ mean(filledagg[,2])
 ```
 
 ```r
-median(filledagg[,2])
+median(imputed$TotalStepsPerDay)
 ```
 
 ```
@@ -459,6 +466,7 @@ Conclusion: the mean and the median values differ from the first part of the ass
 I use the dataset with the filled-in missing values for this part.
 
 ### Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
+
     
 
 ```r

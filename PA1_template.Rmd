@@ -164,6 +164,7 @@ Conclusion: the mean and the median values differ from the first part of the ass
 I use the dataset with the filled-in missing values for this part.
 
 ### Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
+
     
 ```{r}
 library(plyr)
